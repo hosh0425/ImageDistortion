@@ -20,7 +20,10 @@ public:
     vector<Point2f> src;
     // The dest points must be detected based on src points
     vector<Point2f> dest;
+    vector<Point2f> userDefinedBound;
     Mat getOriginalImage(){return originalImage;}
+    Mat cropImage(Mat img, vector<Point2f> cropBound);
+    Mat isolateTheTextBox(Mat thresholdedImage , int removeComponnentsBySizeLessThan=80);
 private:
     // This is resizing scale. If 0<scale<1 will decrease the size and if scale>1 will increase the size
     float scale =0.2f;
@@ -31,6 +34,11 @@ private:
     Point2f upperRight = Point2f(2624.4176420761373f*scale, 519.85418332633435f*scale);
     Point2f lowerLeft = Point2f(713.21758771346913f*scale, 3639.7445176981314f*scale);
     Point2f lowerRight= Point2f(2712.7031913854335f*scale, 3671.4076277199497f*scale);
+
+//    Point2f upperLeft = Point2f(573.75001931190491f*scale, 62.443645477294922f*scale);
+//    Point2f upperRight = Point2f(2527.2041301727295f*scale, 316.38547897338867f*scale);
+//    Point2f lowerLeft = Point2f(512.9790723323822f*scale, 3677.2695279121399f*scale);
+//    Point2f lowerRight= Point2f(2658.6084594726562f*scale, 3443.7597541809082f*scale);
 
     //These for points are groundturuth for text bounding box which I have to find them
     Point2f upperLeftText= Point2f(764.11350209834291f*scale+45, 621.9136455665207f*scale+95);
